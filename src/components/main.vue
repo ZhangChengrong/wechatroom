@@ -152,9 +152,11 @@ export default {
     }
   },
   created(){
-    // 测试用
+    // 测试用,每隔15s模拟接收一次消息
+    let type = '0'
     setInterval(() => {
-      this.receiveMessage();
+      this.receiveMessage(type);
+      type = type === '0'?'1':'0'
     }, 15000);
   }
 };
