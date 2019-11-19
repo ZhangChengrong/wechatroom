@@ -2,6 +2,8 @@
 
 > A Vue.js project
 
+##建议在pc上查看，主要模仿的是微信pc版本的样式
+
 ## Build Setup
 
 ``` bash
