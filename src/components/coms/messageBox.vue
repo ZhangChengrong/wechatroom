@@ -19,7 +19,7 @@
         <div class="messsage-username" v-if="userId !== user.userId">
           <span>{{user.name}}</span>
         </div>
-        <div class="message-content" @contextmenu="messageClick">
+        <div class="message-content" @click="messageClick" @contextmenu="messageClick">
           <p v-if="message.type === '1'">{{message.message}}</p>
           <img :src="message.url" alt v-else-if="message.type === '2'" />
         </div>
@@ -73,7 +73,7 @@ export default {
     messageClick(e) {
       e.preventDefault();
       //   右键本人发送的消息才可撤回，目前暂不做时间限制和重新编辑
-      if (e.button === 2 && this.userId === this.user.userId) {
+      if (this.userId === this.user.userId) {
         this.$emit("revoke");
       }
     }

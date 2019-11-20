@@ -154,10 +154,10 @@ export default {
   },
   created() {
     // 测试用,每隔15s模拟接收一次消息
-    let type = "0";
+    let type = "2";
     setInterval(() => {
       this.receiveMessage(type);
-      type = type === "0" ? "1" : "0";
+      type = type === "2" ? "1" : "2";
     }, 15000);
   }
 };
@@ -176,6 +176,7 @@ export default {
     display: flex;
     flex: auto;
     width: 100%;
+    overflow: auto;
   }
   .textarea-container {
     width: 100%;

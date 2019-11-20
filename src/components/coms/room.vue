@@ -131,6 +131,8 @@ export default {
     }
   }
   .room-content {
+    display: flex;
+    flex-direction: column;
     position: relative;
     flex: auto;
     width: 100%;
@@ -139,8 +141,8 @@ export default {
     overflow: hidden;
     .room-message-wrap {
       position: relative;
+      flex: auto;
       width: 100%;
-      height: 100%;
       padding-top: 3vw;
       box-sizing: border-box;
       overflow: auto;
