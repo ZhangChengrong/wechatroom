@@ -125,6 +125,7 @@ export default {
   .room-header {
     width: 100%;
     h3 {
+      font-size: 2.4vw;
       margin: 0;
       line-height: 5vw;
     }
@@ -135,7 +136,7 @@ export default {
     width: 100%;
     padding: 0.5vw 1vw 0;
     box-sizing: border-box;
-    overflow: auto;
+    overflow: hidden;
     .room-message-wrap {
       position: relative;
       width: 100%;

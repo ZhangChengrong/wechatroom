@@ -114,6 +114,7 @@ export default {
     }
     .message-content {
       max-width: 40vw;
+      min-height: 7.5vw;
       padding: 1.5vw;
       border-radius: 10px;
       background: rgb(156, 221, 156);

@@ -14,7 +14,7 @@
       ></room>
     </div>
     <div class="textarea-container">
-      <textarea cols="30" rows="10" v-model="txt" @keyup.enter="sendMessage"></textarea>
+      <textarea cols="30" rows="10" v-model="text" @keyup.enter="sendMessage" @change="sendMessage"></textarea>
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
     return {
       // 人员视角 测试用
       curUserId: "10001",
-      txt: "",
+      text: "",
       msgList: [
         {
           id: 1,
@@ -117,27 +117,28 @@ export default {
         });
       }
     },
-    receiveMessage() {
+    receiveMessage(type) {
       this.msgList.push({
         id: new Date().getTime(),
-        type: "2",
-        url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574161359253&di=d5299da4daec04f3915649dc59ead0a8&imgtype=0&src=http%3A%2F%2Fs06.lmbang.com%2FM00%2FA3%2FEA%2FecloA1tFv6WAUZ40ABOcQYyS9pE107.gif',
+        type: type,
+        url:
+          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574161359253&di=d5299da4daec04f3915649dc59ead0a8&imgtype=0&src=http%3A%2F%2Fs06.lmbang.com%2FM00%2FA3%2FEA%2FecloA1tFv6WAUZ40ABOcQYyS9pE107.gif",
         message: "随机收到的一条数据，定时时间15s",
         time: "2019-11-19",
         sender: "10002"
       });
     },
     sendMessage() {
-      if (this.txt) {
-        this.msgList.push({
-          id: new Date().getTime(),
-          type: "1",
-          message: this.txt,
-          time: new Date().toLocaleTimeString(),
-          sender: this.curUserId
-        });
-        this.txt = "";
-      }
+      // 避免发送空字符
+      if (!this.text.replace(/\s/g, "")) return;
+      this.msgList.push({
+        id: new Date().getTime(),
+        type: "1",
+        message: this.text,
+        time: new Date().toLocaleTimeString(),
+        sender: this.curUserId
+      });
+      this.text = "";
     },
     revokeMsg(obj) {
       this.msgList.splice(obj.index, 1, {
@@ -151,12 +152,12 @@ export default {
       });
     }
   },
-  created(){
+  created() {
     // 测试用,每隔15s模拟接收一次消息
-    let type = '0'
+    let type = "0";
     setInterval(() => {
       this.receiveMessage(type);
-      type = type === '0'?'1':'0'
+      type = type === "0" ? "1" : "0";
     }, 15000);
   }
 };
@@ -166,7 +167,7 @@ export default {
 .main-content {
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
   background: #fff;
